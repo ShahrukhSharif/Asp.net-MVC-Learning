@@ -1,0 +1,144 @@
+File --->>>   HomeController.cs
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace ControllerCheck.Controllers
+{
+    public class HomeController : Controller
+    {
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult About()
+        {
+            ViewBag.Message = "Your application description page.";
+
+            return View();
+        }
+
+        public ActionResult Contact()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+        // view Bag
+        public ActionResult view_bag()
+        {
+            ViewBag.Name = "Shahrukh";
+            ViewBag.LastName = "Sharif";
+
+            ViewBag.A = new List < string >{
+                "Num1",
+                "Num2",
+                "Num3",
+                "Num4"
+            };
+           return View();
+        }
+
+
+        public ActionResult view_data()
+        {
+            ViewData["Name"] = "Shahrukh";
+
+
+            ViewData["class"] = new List<string>{
+                "Num1",
+                "Num2",
+                "Num3",
+                "Num4"
+            };
+            return View();
+        }
+
+
+        public ActionResult temp_data()
+        {
+
+
+            TempData["class"] = new List<string>{
+                "Num1",
+                "Num2",
+                "Num3",
+                "Num4"
+            };
+            return RedirectToAction("Checking_Rediection");
+        }
+
+
+        public ActionResult Checking_Rediection()
+        {
+
+
+            return View();
+        }
+    }
+}
+
+
+--------------------------------------------------------------------------------
+
+@{
+    ViewBag.Title = "view_data";
+}
+
+<h2>view_data</h2>
+
+<h1>   @ViewData["Name"]  </h1>
+
+
+@foreach(string a in (List<string>)@ViewData["Class"])
+{
+    <li>
+        @a
+    </li>
+}
+
+
+--------------------------------------------------------------------------
+
+@{
+    ViewBag.Title = "view_bag";
+}
+
+<h2>view_bag</h2>
+
+//<h1>@ViewBag.Name</h1>
+//<h1>@ViewBag.LastName</h1>
+
+@foreach(string a in @ViewBag.A)
+{
+    <li>
+        @a
+    </li>
+}
+
+--------------------------------------------------------------------------
+
+
+@{
+    ViewBag.Title = "Checking_Rediection";
+}
+
+<h2>Checking_Rediection</h2>
+
+@foreach(string a in (List<String>)TempData["class"])
+{
+    <li>
+        @a
+        </li>
+}
+
+
+
+
+
+
